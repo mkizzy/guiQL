@@ -14,15 +14,15 @@ const Navbar = (props: Props) => {
                         {/* LEFT */}
                             {/*INSERT LOGO HERE */}
                         {/* RIGHT */}
-                        <div className={`${flexBetween} w-full`}>
-                            <div className={`${flexBetween} gap-8 text-sm`}>
+                        <div className={`${flexBetween} w-full text-sm`}>
+                            <div className={`${flexBetween} gap-8 `}>
                                 {/*Need to change these to links */}
                                 <p>Home</p>
                                 <p>Tutorial</p>
                                 <p>Blog</p>
                                 <p>About Us</p>
                             </div>
-                            <div className={`${flexBetween} gap-8 text-sm`}>
+                            <div className={`${flexBetween} gap-8 `}>
                                 <p>Log in</p> {/*Need to change these to links */}
                                 <button className="rounded-md bg-secondary-500 px-10 py-2 hover:bg-primary-500 hover:text-white">
                                     Create An Account
