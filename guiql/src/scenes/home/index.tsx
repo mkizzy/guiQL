@@ -44,7 +44,7 @@ const Home = ({setSelectedPage}: Props) => {
                         </div>
                         <p className='mt-8 text-small text-purple-800 md:w-4/5'>
                             Your one stop solution to modernize your REST PostgreSQL database. GuiQL allows you and/or 
-                            your team to make the most out of your time by providing you a single space to transition
+                            your team to make the most out of your time by providing you a single space to evolve
                             your REST PostgreSQL database to GraphQL with just your database URI.
                         </p>
                     </motion.div>
@@ -63,13 +63,13 @@ const Home = ({setSelectedPage}: Props) => {
                         <ActionButton setSelectedPage={setSelectedPage}>
                             Join Now
                         </ActionButton>
-                        <AnchorLink
+                        
+                        <span
                             className = "text-sm font-thin text-purple-500 underline hover:text-secondary-500"
                             onClick = {()=> setSelectedPage(SelectedPage.Login)}
-                            href = {`#${SelectedPage.Login}`}
                         >
                             <p>Already signed up? Login</p>   
-                        </AnchorLink>
+                        </span>
 
                     </motion.div>
                 </div>
@@ -79,13 +79,14 @@ const Home = ({setSelectedPage}: Props) => {
                 </div>
             </motion.div>
             {isAboveMediumScreens && (
-        <div className="h-[150px] w-full bg-primary-100 py-10">
-            <div className="mx-auto w-5/6">
-                <div className="flex w-3/5 items-center justify-between gap-8">
-                
+                <div className="h-[150px] w-full bg-primary-100 py-10">
+                    <div className="mx-auto w-5/6">
+                        <div className="flex w-3/5 items-center justify-between gap-8">
+                        {/* INSERT LOGOS OF FI, CS, OSL, UB*/}
+                        
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
         )}
         </section>
     )

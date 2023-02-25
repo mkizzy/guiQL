@@ -103,6 +103,11 @@ const Navbar = ({
                             selectedPage = {selectedPage}
                             setSelectedPage = {setSelectedPage}
                         />
+                        <Link 
+                            page = "Sign Up"
+                            selectedPage = {selectedPage}
+                            setSelectedPage = {setSelectedPage}
+                        />
                     </div>
                     
                 </div>
