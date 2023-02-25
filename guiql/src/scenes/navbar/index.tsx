@@ -28,7 +28,7 @@ const Navbar = ({
                     <div className= {`${flexBetween} w-full gap-16`}>
                         {/* LEFT */}
                             {/*INSERT LOGO HERE */}
-                            <p>guiQL</p>
+                            <p>GuiQL</p>
                         {/* RIGHT */}
                         {isAboveMediumScreens ? (
                             <div className={`${flexBetween} w-full`}>
@@ -63,7 +63,7 @@ const Navbar = ({
                             </div>
                         ) : (
                             <button
-                                className = "rounded-full bg-secondary-500 p-2"
+                                className = "rounded-full bg-primary-500 p-2 hover:bg-secondary-500" 
                                 onClick={()=> setIsMenuToggled(!isMenuToggled)}
                             >
                                 <Bars3Icon className = "h-6 w-6 text-white"/>
