@@ -20,7 +20,7 @@ const Navbar = ({
     const flexBetween = "flex items-center justify-between"
     const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false)
     const isAboveMediumScreens = useMediaQuery("(min-width: 1060px)")
-    const navbarBackground = isTopOfPage ? "" : "bg-primary-100 drop-shadow"
+    const navbarBackground = isTopOfPage === false || isAboveMediumScreens === false? "bg-primary-100 drop-shadow" : ""
     return (
         <nav>
             <div className = {`${navbarBackground} ${flexBetween} fixed top-0 z-30 w-full py-6`}>
