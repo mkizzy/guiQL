@@ -3,6 +3,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import Link from "./Link"
 import { SelectedPage } from "@/shared/types";
 import useMediaQuery from "@/hooks/useMediaQuery";
+import ActionButton from "@/shared/ActionButton";
 
 type Props = {
     selectedPage: SelectedPage;
@@ -28,8 +29,8 @@ const Navbar = ({
                             <p>guiQL</p>
                         {/* RIGHT */}
                         {isAboveMediumScreens ? (
-                        <div className={`${flexBetween} w-full `}>
-                            <div className={`${flexBetween} gap-8 text-sm`}>
+                        <div className={`${flexBetween} w-full text-sm`}>
+                            <div className={`${flexBetween} gap-8 `}>
                                 {/*Need to change these to links */}
                                 <Link 
                                     page = "Home" 
@@ -52,11 +53,13 @@ const Navbar = ({
                                     setSelectedPage = {setSelectedPage}
                                 />
                             </div>
-                            <div className={`${flexBetween} gap-8 text-sm`}>
+                            <div className={`${flexBetween} gap-8`}>
                                 <p>Log in</p> {/*Need to change these to links */}
-                                <button className="rounded-md bg-secondary-500 px-10 py-2 hover:bg-primary-500 hover:text-white">
-                                    Create An Account
-                                </button>
+                                <ActionButton 
+                                    setSelectedPage = {setSelectedPage}
+                                >
+                                    Sign Up Today
+                                </ActionButton>
                             </div>
                         </div>
                         ) : (
