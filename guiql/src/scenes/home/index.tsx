@@ -92,10 +92,10 @@ const Home = ({setSelectedPage}: Props) => {
                     <div className="mx-auto w-4/6">
                         <div className="flex items-center justify-between gap-8">
                         {/* INSERT LOGOS OF FI, CS, OSL, UB*/}
-                        <img alt="ublogo" src={ublogo} height = "100px" width= "100px"/>
-                        <img alt="codesmithlogo" src={codesmithlogo} height = "100px" width= "100px"/>
-                        <img alt="flatironlogo" src={flatironlogo} height = "150px" width= "150px"/>
-                        <img alt="osllogo" src={osllogo} height = "100px" width= "100px"/>
+                            <img alt="ublogo" src={ublogo} height = "100px" width= "100px"/>
+                            <img alt="codesmithlogo" src={codesmithlogo} height = "100px" width= "100px"/>
+                            <img alt="flatironlogo" src={flatironlogo} height = "150px" width= "150px"/>
+                            <img alt="osllogo" src={osllogo} height = "100px" width= "100px"/>
                         </div>
                     </div>
                 </motion.div>
