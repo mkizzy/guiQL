@@ -5,6 +5,10 @@ import AnchorLink from 'react-anchor-link-smooth-scroll'
 import HomePageText from '@/assets/HomePageText.png'
 import graphql from '@/assets/graphql.png'
 import { motion } from 'framer-motion'
+import ublogo from '@/assets/ublogo.png'
+import codesmithlogo from '@/assets/codesmithlogo.png'
+import flatironlogo from '@/assets/flatironlogo.png'
+import  osllogo from '@/assets/osllogo.png'
 
 type Props = {
     setSelectedPage: (value: SelectedPage) => void
@@ -74,19 +78,27 @@ const Home = ({setSelectedPage}: Props) => {
                     </motion.div>
                 </div>
                 {/* IMAGE */}
-                <div className='flex basis-2/5 justify-center md:z-10 bg-amber-50 '>
+                <div className='flex basis-2/5 justify-center md:z-10 '>
                     <img alt = "home-logo" src = {graphql} />
                 </div>
             </motion.div>
             {isAboveMediumScreens && (
-                <div className="h-[150px] w-full bg-primary-100 py-10">
-                    <div className="mx-auto w-5/6">
-                        <div className="flex w-3/5 items-center justify-between gap-8">
+                <motion.div 
+                    className="h-[150px] w-full bg-primary-100 py-10"
+                    initial={{ y: 100 }}
+                    animate={{ y: 0 }}
+                    transition={{ duration: 1 }}
+                >
+                    <div className="mx-auto w-4/6">
+                        <div className="flex items-center justify-between gap-8">
                         {/* INSERT LOGOS OF FI, CS, OSL, UB*/}
-                        
+                        <img alt="ublogo" src={ublogo} height = "100px" width= "100px"/>
+                        <img alt="codesmithlogo" src={codesmithlogo} height = "100px" width= "100px"/>
+                        <img alt="flatironlogo" src={flatironlogo} height = "150px" width= "150px"/>
+                        <img alt="osllogo" src={osllogo} height = "100px" width= "100px"/>
                         </div>
                     </div>
-                </div>
+                </motion.div>
         )}
         </section>
     )
