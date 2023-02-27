@@ -8,13 +8,17 @@ import SignUpButton from "@/shared/SignUpButton";
 type Props = {
     isTopOfPage: boolean;
     selectedPage: SelectedPage;
-    setSelectedPage: (value: SelectedPage) => void
+    setSelectedPage: (value: SelectedPage) => void;
+    onHandleToggleSignUpModal: ()=>void;
+    onHandleToggleLoginModal: ()=>void;
 }
 
 const Navbar = ({
     isTopOfPage,
     selectedPage,
-    setSelectedPage
+    setSelectedPage,
+    onHandleToggleSignUpModal,
+    onHandleToggleLoginModal
 }: Props) => {
 
     const flexBetween = "flex items-center justify-between"
@@ -61,7 +65,10 @@ const Navbar = ({
                                 </div>
                                 <div className={`${flexBetween} gap-8`}>
                                     <p>Log in</p> {/*Need to change this to load the login modal */}
-                                    <SignUpButton>
+                                    <SignUpButton
+                                        onHandleToggleSignUpModal = {onHandleToggleSignUpModal}
+                                        onHandleToggleLoginModal = {onHandleToggleLoginModal}
+                                    >
                                         Sign Up Today
                                     </SignUpButton>
                                 </div>

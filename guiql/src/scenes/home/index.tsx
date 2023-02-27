@@ -1,6 +1,5 @@
 import { SelectedPage } from '@/shared/types'
 import useMediaQuery from '@/hooks/useMediaQuery'
-import AnchorLink from 'react-anchor-link-smooth-scroll'
 import HomePageText from '@/assets/HomePageText.png'
 import graphql from '@/assets/graphql.png'
 import { motion } from 'framer-motion'
@@ -13,9 +12,15 @@ import SignUpButton from '@/shared/SignUpButton'
 
 type Props = {
     setSelectedPage: (value: SelectedPage) => void
+    onHandleToggleSignUpModal: ()=>void;
+    onHandleToggleLoginModal: ()=>void;
 }
 
-const Home = ({setSelectedPage}: Props) => {
+const Home = ({
+    setSelectedPage,
+    onHandleToggleSignUpModal,
+    onHandleToggleLoginModal
+}: Props) => {
     const isAboveMediumScreens = useMediaQuery("(min-width: 1060px)")
 
     return (
@@ -65,8 +70,10 @@ const Home = ({setSelectedPage}: Props) => {
                             visible: { opacity: 1, x: 0 },
                         }}
                     >
-
-                        <SignUpButton>
+                        <SignUpButton
+                            onHandleToggleSignUpModal = {onHandleToggleSignUpModal}
+                            onHandleToggleLoginModal = {onHandleToggleLoginModal}
+                        >
                             Join Now
                         </SignUpButton>
                         <span
@@ -75,7 +82,6 @@ const Home = ({setSelectedPage}: Props) => {
                         >
                             <p>Already signed up? Login</p>   
                         </span>
-
                     </motion.div>
                 </div>
                 {/* IMAGE */}
