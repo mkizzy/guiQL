@@ -67,7 +67,6 @@ const Home = ({setSelectedPage}: Props) => {
                         <ActionButton setSelectedPage={setSelectedPage}>
                             Join Now
                         </ActionButton>
-                        
                         <span
                             className = "text-sm font-thin text-purple-500 underline hover:text-secondary-500"
                             onClick = {()=> setSelectedPage(SelectedPage.Login)}
@@ -84,7 +83,7 @@ const Home = ({setSelectedPage}: Props) => {
             </motion.div>
             {isAboveMediumScreens && (
                 <motion.div 
-                    className="h-[150px] w-full bg-primary-100 py-10"
+                    className="h-[150px] w-full bg-primary-100 py-10 "
                     initial={{ y: 100 }}
                     animate={{ y: 0 }}
                     transition={{ duration: 1 }}

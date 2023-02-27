@@ -39,6 +39,11 @@ const Navbar = ({
                                         setSelectedPage = {setSelectedPage}
                                     />
                                     <Link 
+                                        page = "Features"
+                                        selectedPage = {selectedPage}
+                                        setSelectedPage = {setSelectedPage}
+                                    />
+                                    <Link 
                                         page = "Tutorial"
                                         selectedPage = {selectedPage}
                                         setSelectedPage = {setSelectedPage}
@@ -89,6 +94,11 @@ const Navbar = ({
                             setSelectedPage = {setSelectedPage}
                         />
                         <Link 
+                            page = "Features"
+                            selectedPage = {selectedPage}
+                            setSelectedPage = {setSelectedPage}
+                        />
+                        <Link 
                             page = "Tutorial"
                             selectedPage = {selectedPage}
                             setSelectedPage = {setSelectedPage}
@@ -103,13 +113,7 @@ const Navbar = ({
                             selectedPage = {selectedPage}
                             setSelectedPage = {setSelectedPage}
                         />
-                        <Link 
-                            page = "Sign Up"
-                            selectedPage = {selectedPage}
-                            setSelectedPage = {setSelectedPage}
-                        />
                     </div>
-                    
                 </div>
             )}
         </nav>
