@@ -43,11 +43,11 @@ const Features = ({
     return (
     <section
         id = "features"
-        className="mx-auto min-h-full w-5/6 pt-40"
+        className="mx-auto min-h-full w-5/6 "
     >
         <motion.div onViewportEnter={()=> setSelectedPage(SelectedPage.Features)}>
             <motion.div 
-                className="md:my-5 md:w-3/5"
+                className="md:my-5 md:w-3/5 pt-40"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.5 }}
