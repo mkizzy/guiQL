@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import { SelectedPage } from "@/shared/types"
 import Home from "@/scenes/home"
 import CredentialModal from "@/scenes/credential"
+import Features from "@/scenes/features"
 
 
 
@@ -46,6 +47,9 @@ function App() {
         setSelectedPage={setSelectedPage}
         onHandleToggleLoginModal = {handleToggleLoginModal}
         onHandleToggleSignUpModal = {handleToggleSignUpModal}
+      />
+      <Features 
+        setSelectedPage = {setSelectedPage}
       />
     </div>
   )
