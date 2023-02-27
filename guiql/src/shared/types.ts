@@ -5,3 +5,9 @@ export enum SelectedPage {
     Blog = "blog",
     ContactUs = "contactus",
 }
+
+export interface FeatureType{
+    image : JSX.Element,
+    title: string,
+    description: string
+}

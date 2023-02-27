@@ -91,9 +91,14 @@ const Home = ({
             {isAboveMediumScreens && (
                 <motion.div 
                     className="h-[150px] w-full bg-primary-100 py-10 "
-                    initial={{ y: 100 }}
-                    animate={{ y: 0 }}
-                    transition={{ duration: 1 }}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.5 }}
+                    transition={{ duration: 2 }}
+                    variants={{
+                        hidden: { opacity: 0, y: 80 },
+                        visible: { opacity: 1, y: 0 },
+                    }}
                 >
                     <div className="mx-auto w-4/6">
                         <div className="flex items-center justify-between gap-8">
