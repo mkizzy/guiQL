@@ -3,18 +3,22 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import Link from "./Link"
 import { SelectedPage } from "@/shared/types";
 import useMediaQuery from "@/hooks/useMediaQuery";
-import ActionButton from "@/shared/ActionButton";
+import SignUpButton from "@/shared/SignUpButton";
 
 type Props = {
     isTopOfPage: boolean;
     selectedPage: SelectedPage;
-    setSelectedPage: (value: SelectedPage) => void
+    setSelectedPage: (value: SelectedPage) => void;
+    onHandleToggleSignUpModal: ()=>void;
+    onHandleToggleLoginModal: ()=>void;
 }
 
 const Navbar = ({
     isTopOfPage,
     selectedPage,
-    setSelectedPage
+    setSelectedPage,
+    onHandleToggleSignUpModal,
+    onHandleToggleLoginModal
 }: Props) => {
 
     const flexBetween = "flex items-center justify-between"
@@ -60,10 +64,15 @@ const Navbar = ({
                                     />
                                 </div>
                                 <div className={`${flexBetween} gap-8`}>
-                                    <p>Log in</p> {/*Need to change this to load the login modal */}
-                                    <ActionButton setSelectedPage = {setSelectedPage}>
+                                    <span className = "hover:underline hover:cursor-pointer hover:text-secondary-500">
+                                        <p onClick={()=>onHandleToggleLoginModal()}>Login</p>   
+                                    </span>
+                                    <SignUpButton
+                                        onHandleToggleSignUpModal = {onHandleToggleSignUpModal}
+                                        onHandleToggleLoginModal = {onHandleToggleLoginModal}
+                                    >
                                         Sign Up Today
-                                    </ActionButton>
+                                    </SignUpButton>
                                 </div>
                             </div>
                         ) : (
