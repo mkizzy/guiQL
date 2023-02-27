@@ -64,7 +64,9 @@ const Navbar = ({
                                     />
                                 </div>
                                 <div className={`${flexBetween} gap-8`}>
-                                    <p>Log in</p> {/*Need to change this to load the login modal */}
+                                    <span className = "hover:underline hover:cursor-pointer hover:text-secondary-500">
+                                        <p onClick={()=>onHandleToggleLoginModal()}>Login</p>   
+                                    </span>
                                     <SignUpButton
                                         onHandleToggleSignUpModal = {onHandleToggleSignUpModal}
                                         onHandleToggleLoginModal = {onHandleToggleLoginModal}

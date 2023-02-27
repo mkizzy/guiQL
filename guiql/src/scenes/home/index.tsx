@@ -77,10 +77,9 @@ const Home = ({
                             Join Now
                         </SignUpButton>
                         <span
-                            className = "text-sm font-thin text-purple-500 underline hover:text-secondary-500"
-                            onClick = {()=>{}}
+                            className = "text-sm font-thin hover:cursor-pointer text-purple-500 underline hover:text-secondary-500"
                         >
-                            <p>Already signed up? Login</p>   
+                            <p onClick={()=>onHandleToggleLoginModal()}>Already signed up? Login</p>   
                         </span>
                     </motion.div>
                 </div>

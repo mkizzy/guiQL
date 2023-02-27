@@ -2,7 +2,7 @@ import Navbar from "@/scenes/navbar"
 import { useState, useEffect } from "react"
 import { SelectedPage } from "@/shared/types"
 import Home from "@/scenes/home"
-import CredentialModal from "./scenes/credential"
+import CredentialModal from "@/scenes/credential"
 
 
 
