@@ -1,6 +1,5 @@
 import { SelectedPage } from '@/shared/types'
 import useMediaQuery from '@/hooks/useMediaQuery'
-import ActionButton from '@/shared/ActionButton'
 import AnchorLink from 'react-anchor-link-smooth-scroll'
 import HomePageText from '@/assets/HomePageText.png'
 import graphql from '@/assets/graphql.png'
@@ -9,6 +8,8 @@ import ublogo from '@/assets/ublogo.png'
 import codesmithlogo from '@/assets/codesmithlogo.png'
 import flatironlogo from '@/assets/flatironlogo.png'
 import  osllogo from '@/assets/osllogo.png'
+import SignUpButton from '@/shared/SignUpButton'
+
 
 type Props = {
     setSelectedPage: (value: SelectedPage) => void
@@ -64,12 +65,13 @@ const Home = ({setSelectedPage}: Props) => {
                             visible: { opacity: 1, x: 0 },
                         }}
                     >
-                        <ActionButton setSelectedPage={setSelectedPage}>
+
+                        <SignUpButton>
                             Join Now
-                        </ActionButton>
+                        </SignUpButton>
                         <span
                             className = "text-sm font-thin text-purple-500 underline hover:text-secondary-500"
-                            onClick = {()=> setSelectedPage(SelectedPage.Login)}
+                            onClick = {()=>{}}
                         >
                             <p>Already signed up? Login</p>   
                         </span>

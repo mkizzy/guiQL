@@ -3,7 +3,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import Link from "./Link"
 import { SelectedPage } from "@/shared/types";
 import useMediaQuery from "@/hooks/useMediaQuery";
-import ActionButton from "@/shared/ActionButton";
+import SignUpButton from "@/shared/SignUpButton";
 
 type Props = {
     isTopOfPage: boolean;
@@ -61,9 +61,9 @@ const Navbar = ({
                                 </div>
                                 <div className={`${flexBetween} gap-8`}>
                                     <p>Log in</p> {/*Need to change this to load the login modal */}
-                                    <ActionButton setSelectedPage = {setSelectedPage}>
+                                    <SignUpButton>
                                         Sign Up Today
-                                    </ActionButton>
+                                    </SignUpButton>
                                 </div>
                             </div>
                         ) : (
