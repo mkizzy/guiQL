@@ -43,7 +43,7 @@ const Features = ({
     return (
     <section
         id = "features"
-        className="mx-auto min-h-full w-5/6 py-40"
+        className="mx-auto min-h-full w-5/6 pt-40"
     >
         <motion.div onViewportEnter={()=> setSelectedPage(SelectedPage.Features)}>
             <motion.div 
