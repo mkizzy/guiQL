@@ -4,9 +4,7 @@ type Props = {}
 
 const CredentialModal = (props: Props) => {
     return (
-        <div>
-            login
-        </div>
+        <div>index</div>
     )
 }
 
