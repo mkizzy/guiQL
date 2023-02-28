@@ -8,5 +8,4 @@ const userSchema = new mongoose.Schema({
     password: {type: String},
     savedURI: [{type: String, ref: 'User'}]
 });
-
 module.exports = mongoose.model("User", userSchema)
