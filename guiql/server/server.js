@@ -2,15 +2,19 @@ require('dotenv').config()
 const express = require('express');
 const app = express();
 const path = require('path');
-const PORT = 3000;
 const mongoose = require('mongoose');
 const cors = require('cors');
+
+//Middlewares
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
 const URI = process.env.MONGO_URI;
+const PORT = process.env.API_PORT || process.env.PORT;
+
 mongoose.set("strictQuery", false);
+
 mongoose.connect(URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
