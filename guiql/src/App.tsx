@@ -2,10 +2,8 @@ import Navbar from "@/scenes/navbar"
 import { useState, useEffect } from "react"
 import { SelectedPage } from "@/shared/types"
 import Home from "@/scenes/home"
-import CredentialModal from "@/scenes/credential"
 import Features from "@/scenes/features"
-
-
+import CredentialModal from "@/scenes/credentialModal"
 
 function App() {
 
@@ -28,12 +26,19 @@ function App() {
 
   const handleToggleLoginModal = () => {
     setToggleLoginModal(toggleLogInModal=> !toggleLogInModal)
+    setToggleSignUpModal(toggleSignUpModal=>toggleSignUpModal=false)
     console.log("login has been toggeled")
   }
 
   const handleToggleSignUpModal = () => {
     setToggleSignUpModal(toggleSignUpModal=>!toggleSignUpModal)
+    setToggleLoginModal(toggleLogInModal=>toggleLogInModal=false)
     console.log("sign up form has been clicked")
+  }
+
+  const handleCloseModal = () => {
+    setToggleLoginModal(toggleLogInModal=>toggleLogInModal=false)
+    setToggleSignUpModal(toggleSignUpModal=>toggleSignUpModal=false)
   }
   return (
     <div className="app bg-amber-50">
@@ -48,6 +53,7 @@ function App() {
         onHandleToggleLoginModal = {handleToggleLoginModal}
         onHandleToggleSignUpModal = {handleToggleSignUpModal}
       />
+      {toggleLogInModal || toggleSignUpModal ? <CredentialModal /> : ""}
       <Features 
         setSelectedPage = {setSelectedPage}
       />
