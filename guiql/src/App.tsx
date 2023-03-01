@@ -54,7 +54,11 @@ function App() {
         onHandleToggleLoginModal = {handleToggleLoginModal}
         onHandleToggleSignUpModal = {handleToggleSignUpModal}
       />
-      {toggleLogInModal || toggleSignUpModal ? <CredentialModal /> : ""}
+      {toggleLogInModal || toggleSignUpModal ? <CredentialModal 
+        onHandleCloseModal = {handleCloseModal}
+        onHandleToggleLoginModal = {handleToggleLoginModal}
+        onHandleToggleSignUpModal = {handleToggleSignUpModal}
+      /> : ""}
       <Features 
         setSelectedPage = {setSelectedPage}
       />
