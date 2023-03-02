@@ -4,9 +4,9 @@ type Props = {}
 
 const SignUpModal = (props: Props) => {
     return (
-        <>
-
-        </>
+        <form>
+            
+        </form>
     )
 }
 

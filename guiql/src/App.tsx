@@ -55,6 +55,8 @@ function App() {
         onHandleToggleSignUpModal = {handleToggleSignUpModal}
       />
       {toggleLogInModal || toggleSignUpModal ? <CredentialModal 
+        toggleLogInModal = {toggleLogInModal}
+        toggleSignUpModal ={toggleSignUpModal}
         onHandleCloseModal = {handleCloseModal}
         onHandleToggleLoginModal = {handleToggleLoginModal}
         onHandleToggleSignUpModal = {handleToggleSignUpModal}
