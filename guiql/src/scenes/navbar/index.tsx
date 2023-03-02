@@ -4,6 +4,7 @@ import Link from "./Link"
 import { SelectedPage } from "@/shared/types";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import SignUpButton from "@/shared/SignUpButton";
+import { motion, AnimatePresence } from "framer-motion";
 
 type Props = {
     isTopOfPage: boolean;
@@ -25,6 +26,37 @@ const Navbar = ({
     const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false)
     const isAboveMediumScreens = useMediaQuery("(min-width: 1060px)")
     const navbarBackground = "bg-primary-100 drop-shadow" 
+    const menuVariants = {
+        hidden: {
+            x: "100%",
+            transition: { duration: 0.5 },
+        },
+        visible: {
+            x: 0,
+            transition: { duration: 0.5 },
+        },
+    };
+    
+    const menuContentVariants = {
+        hidden: {
+            opacity: 0,
+            y: "100%",
+            x: 0,
+            transition: { duration: 0.5 },
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            x: 0,
+            transition: { duration: 0.5, delay: 0.5 },
+        },
+        exit: {
+            opacity: 0,
+            y: "100%",
+            x: "100%",
+            transition: { duration: 0.5 },
+        },
+     };
     return (
         <nav>
             <div className = {`${navbarBackground} ${flexBetween} fixed top-0 z-30 w-full py-6`}>
@@ -87,8 +119,14 @@ const Navbar = ({
                 </div>
             </div>
             {/*MOBILE MENU MODAL */}
+            <AnimatePresence>
             {!isAboveMediumScreens && isMenuToggled && (
-                <div className = "fixed right-0 bottom-0 z-40 h-full w-[300px] bg-primary-100 drop-shadow-xl">
+                <motion.div className = "fixed right-0 bottom-0 z-40 h-full w-[300px] bg-primary-100 drop-shadow-xl"
+                    variants={menuVariants}
+                    initial="hidden"
+                    animate="visible"
+                    exit="hidden"
+                >
                     {/*CLOSE ICON*/}
                     <div className="flex justify-end p-12">
                         <button onClick={()=> setIsMenuToggled(!isMenuToggled)}>
@@ -96,7 +134,9 @@ const Navbar = ({
                         </button>
                     </div>
                     {/*MENU ITEMS */}
-                    <div className="ml-[33%] flex flex-col gap-10 text-2xl">
+                    <motion.div className="ml-[33%] flex flex-col gap-10 text-2xl"
+                        variants={menuContentVariants}
+                    >
                         <Link 
                             page = "Home" 
                             selectedPage = {selectedPage}
@@ -122,9 +162,10 @@ const Navbar = ({
                             selectedPage = {selectedPage}
                             setSelectedPage = {setSelectedPage}
                         />
-                    </div>
-                </div>
+                    </motion.div>
+                </motion.div>
             )}
+            </AnimatePresence>
         </nav>
     )
 }

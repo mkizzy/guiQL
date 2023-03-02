@@ -85,7 +85,12 @@ const Home = ({
                 </div>
                 {/* IMAGE */}
                 <div className='flex basis-2/5 justify-center md:z-10 '>
-                    <img alt = "home-logo" src = {graphql} />
+                    <motion.img 
+                        alt = "home-logo" 
+                        src = {graphql} 
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+                    />
                 </div>
             </motion.div>
             {isAboveMediumScreens && (

@@ -40,9 +40,9 @@ function App() {
     setToggleLoginModal(toggleLogInModal=>toggleLogInModal=false)
     setToggleSignUpModal(toggleSignUpModal=>toggleSignUpModal=false)
   }
+
   return (
     <div className="app bg-amber-50">
-      
       <Navbar 
         isTopOfPage = {isTopOfPage}
         selectedPage = {selectedPage} setSelectedPage = {setSelectedPage}
