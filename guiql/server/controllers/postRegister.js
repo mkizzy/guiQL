@@ -12,8 +12,11 @@ const postRegister = async (req, res) => {
             return res.status(409).send('Email has already been registered.');
         }
         
+        if(password!==confirmPassword){
+            return res.status(409).send('Please ensure that the passwords match')
+        }
         //encrypting password
-        const encryptedPassword = await bcrypt.has(password, 10);
+        const encryptedPassword = await bcrypt.hash(password, 10);
         
         //create a new user account in the db
         const user = await User.create({
@@ -22,7 +25,7 @@ const postRegister = async (req, res) => {
             email: email.toLowerCase(),
             password: encryptedPassword
         })
-        
+
         //creating a token
         const token = jwt.sign(
             {
