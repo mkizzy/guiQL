@@ -6,19 +6,28 @@ const SignUpModal = (props: Props) => {
     return (
         <form className="pt-6 pb-2 my-2">
             <div className="mb-4 text-left">
-                <label className="block text-sm font-bold mb-2">Full Name</label>
+                <label className="block text-sm font-bold mb-2">First Name</label>
                 <input
                     className="shadow appearance-none border rounded w-full py-2 px-3"
-                    id="fullname"
+                    id="firstName"
                     type="text"
-                    placeholder="Full Name"
+                    placeholder="First Name"
+                />
+            </div>
+            <div className="mb-4 text-left">
+                <label className="block text-sm font-bold mb-2">Last Name</label>
+                <input
+                    className="shadow appearance-none border rounded w-full py-2 px-3"
+                    id="lastName"
+                    type="text"
+                    placeholder="Last Name"
                 />
             </div>
             <div className="mb-4 text-left">
                 <label className="block text-sm font-bold mb-2">Email Address</label>
                 <input
                     className="shadow appearance-none border rounded w-full py-2 px-3"
-                    id="emailaddress"
+                    id="email"
                     type="text"
                     placeholder="Email Address"
                 />
