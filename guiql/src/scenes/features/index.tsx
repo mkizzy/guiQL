@@ -41,47 +41,50 @@ const Features = ({
     setSelectedPage
 }: Props) => {
     return (
-    <section
-        id = "features"
-        className="mx-auto min-h-full w-5/6 "
-    >
-        <motion.div onViewportEnter={()=> setSelectedPage(SelectedPage.Features)}>
-            <motion.div 
-                className="md:my-5 md:w-3/5 pt-40"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.5 }}
-                transition={{ delay: 0.4, duration: 1 }}
-                variants={{
-                    hidden: { opacity: 0, x: -50 },
-                    visible: { opacity: 1, x: 0 },
-                }}
-            > 
-                <HeaderText>WHAT DO WE OFFER?</HeaderText>
-                <p className="my-5 text-sm">
-                    While helping you evolve your REST PostgreSQL database to GraphQL, we provide you with more tools and resources to help you and your team better understand and visualize the transition.
-                </p>
-            </motion.div>
+        <div className = "md:mt-[-1.5rem] min-h-full w-screen bg-[url('@/assets/feature.svg')] bg-no-repeat bg-cover">
+            <section
+                id = "features"
+                className="mx-auto min-h-full w-5/6"
+            >
+                <motion.div className= "md:pt-60 pt-40" onViewportEnter={()=> setSelectedPage(SelectedPage.Features)}>
+                    <motion.div 
+                        className="md:my-5 md:w-3/5 pt-50"
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.5 }}
+                        transition={{ delay: 0.4, duration: 1 }}
+                        variants={{
+                            hidden: { opacity: 0, x: -50 },
+                            visible: { opacity: 1, x: 0 },
+                        }}
+                    > 
+                        <HeaderText>WHAT DO WE OFFER?</HeaderText>
+                        <p className="my-5 text-sm">
+                            While helping you evolve your REST PostgreSQL database to GraphQL, we provide you with more tools and resources to help you and your team better understand and visualize the transition.
+                        </p>
+                    </motion.div>
 
-            <motion.div 
-                className="md:flex items-center justify-between gap-8 mt-5"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{once:true, amount: 0.5}}
-                variants={container}
-            >   
-                {appFeatures.map((feature: FeatureType) => (
-                    <FeatureBox
-                        key={feature.title}
-                        image={feature.image}
-                        title={feature.title}
-                        description={feature.description}
-                        setSelectedPage={setSelectedPage}
-                    />
-                ))}
-            </motion.div>
-        </motion.div>
-    </section>)
+                    <motion.div 
+                        className="md:flex items-center justify-between gap-8 mt-5"
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{once:true, amount: 0.5}}
+                        variants={container}
+                    >   
+                        {appFeatures.map((feature: FeatureType) => (
+                            <FeatureBox
+                                key={feature.title}
+                                image={feature.image}
+                                title={feature.title}
+                                description={feature.description}
+                                setSelectedPage={setSelectedPage}
+                            />
+                        ))}
+                    </motion.div>
+                </motion.div>
+            </section>
+        </div>
+    )
 }
 
 export default Features

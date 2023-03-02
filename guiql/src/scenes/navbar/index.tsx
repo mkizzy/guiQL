@@ -56,7 +56,7 @@ const Navbar = ({
             x: "100%",
             transition: { duration: 0.5 },
         },
-     };
+    };
     return (
         <nav>
             <div className = {`${navbarBackground} ${flexBetween} fixed top-0 z-30 w-full py-6`}>
