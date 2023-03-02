@@ -1,34 +1,45 @@
-require('dotenv').config()
-const express = require('express');
+const  express =require( 'express');
+const  bodyParser =require( 'body-parser');
+const  mongoose =require( 'mongoose');
+const  cors = require( 'cors');
+const  dotenv =require( 'dotenv');
+const  helmet =require( 'helmet');
+const  morgan =require( 'morgan');
+const authRoutes = require('./routes/authRoutes')
+const uriRoutes = require('./routes/uriRoutes')
+
+//CONFIGURATIONS & MIDDLEWARES
+dotenv.config();
 const app = express();
-const path = require('path');
-const mongoose = require('mongoose');
-const cors = require('cors');
-
-//Middlewares
-app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(helmet());
+app.use(helmet.crossOriginResourcePolicy({policy: "cross-origin"}));
+app.use(morgan("common"));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended : false}));
 app.use(cors());
-
+app.use(express.urlencoded({ extended: true }));
 const URI = process.env.MONGO_URI;
 const PORT = process.env.API_PORT || process.env.PORT;
-
 mongoose.set("strictQuery", false);
 
-mongoose.connect(URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  dbName: 'guiQL'
-})
-.then(()=>{
-  app.listen(PORT, ()=>{
-      console.log(`Server is on ${PORT}`)
-  });
-})
-.catch(err=>{
-  console.log('db connection failed. Server not start.');
-  console.error(err);
-})
+
+//DBConnection
+mongoose
+  .connect(URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    dbName: 'guiQL'
+  })
+  .then(()=>{
+    app.listen(PORT, ()=>{
+        console.log(`Server is on ${PORT}`)
+    });
+  })
+  .catch(err=>{
+    console.log('db connection failed. Server not start.');
+    console.error(err);
+  })
 
 // Global error handler
 app.use((err, req, res, next) => {
@@ -42,6 +53,4 @@ app.use((err, req, res, next) => {
   return res.status(errorObj.status).json(errorObj.message);
 });
 
-// Unknown route handler
-app.use((req, res) => res.sendStatus(404));
-module.exports = app
+app.use("/api/auth", authRoutes)
