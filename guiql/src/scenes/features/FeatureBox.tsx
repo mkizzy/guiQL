@@ -28,7 +28,7 @@ const FeatureBox = ({ image, title, description, setSelectedPage }: Props) => {
             <h4 className="font-bold">{title}</h4>
             <p className="my-3">{description}</p>
             <AnchorLink
-                className="text-sm font-bold text-secondary-500 underline hover:text-white"
+                className="text-sm font-bold text-white underline hover:text-secondary-500"
                 onClick={() => setSelectedPage(SelectedPage.Tutorial)}
                 href={`#${SelectedPage.Tutorial}`}
             >
