@@ -1,6 +1,7 @@
 import LoginModal from "./LoginModal"
 import SignUpModal from "./SignUpModal";
 import { motion, AnimatePresence } from 'framer-motion';
+import { XMarkIcon } from "@heroicons/react/24/solid";
 
 type Props = {
     toggleSignUpModal : boolean
@@ -24,7 +25,6 @@ const CredentialModal = ({
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.5 }}
-                onClick={onHandleCloseModal}
             >
                 <motion.div className="flex min-h-full items-center justify-center p-4 text-center z-10"
                     initial={{ scale: 0.8 }}
@@ -46,7 +46,7 @@ const CredentialModal = ({
                             transition={{ duration: 0.5, delay: 0.2 }}
                         >
                         </motion.div>
-                        <motion.div className="relative mx-6 md:mx-auto w-full md:w-1/4 z-20 m-8"
+                        <motion.div className="relative mx-6 md:mx-auto w-full md:w-1/3 z-20 m-8"
                             initial={{ y: -100 }}
                             animate={{ y: 0 }}
                             exit={{ y: -100 }}
@@ -60,7 +60,7 @@ const CredentialModal = ({
                             >
                                 <div className="flex justify-end mb-6">
                                     <button onClick = {()=>onHandleCloseModal()}>
-                                        <span className="mr-2">Close</span>
+                                        <XMarkIcon className="h-6 w-6 text-gray-400" />
                                     </button>
                                 </div>
                                 <h1 className="text-center text-2xl">{toggleLogInModal ? "Login" : "Sign Up"}</h1>
@@ -75,7 +75,6 @@ const CredentialModal = ({
                                         <SignUpModal/>
                                     }
                                 </motion.div>
-                                
                             </motion.div>
                         </motion.div>
                     </motion.div>

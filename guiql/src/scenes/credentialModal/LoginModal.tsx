@@ -3,7 +3,7 @@ type Props = {
 }
 const LoginModal = (props: Props) => {
     return (
-            <form className="pt-6 pb-2 my-2">
+        <form className="pt-6 pb-2 my-2">
                 {/* Need states to track input values*/}
                 <div className="mb-4 text-left">
                     <label className="block text-sm font-bold mb-2">Email Address</label>
@@ -35,7 +35,7 @@ const LoginModal = (props: Props) => {
                         <a href="#" className="no-underline">Forget Password?</a> 
                     </div>
                 </div>
-            </form>
+        </form>
     );
 };
 
