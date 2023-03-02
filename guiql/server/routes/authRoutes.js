@@ -32,6 +32,7 @@ router.post(
     validator.body(registerSchema),
     authController.postRegister
 )
+
 router.post(
     "/login", 
     validator.body(loginSchema),
