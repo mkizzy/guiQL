@@ -1,8 +1,31 @@
-import React from 'react'
-
-type Props = {}
+import React, {useState} from 'react'
+type Props = {
+ 
+}
+interface SignupState{
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string,
+    confirmedPassword: string
+}
 
 const SignUpModal = (props: Props) => {
+    //create states for firstname, lastname, email, password
+    //create object state for signup modal
+    const [signupState, setsignupState] = useState<SignupState>({
+        firstName : '',
+        lastName: '',
+        email: '',
+        password: '',
+        confirmedPassword: ''
+    });
+    // const [firstName, setFirstName] = useState<string>('');
+    // const [lastName, setLastName] = useState<string>('');
+    // const [email, setEmail] = useState<string>('');
+    // const [password, setPassword] = useState<string>('');
+    // const [confirmedPassword, setConfirmedPassword] = useState<string>('');
+    console.log(signupState.firstName, signupState.lastName, signupState.email, signupState.password, signupState.confirmedPassword );
     return (
         <form className="pt-6 pb-2 my-2">
             <div className="mb-4 text-left">
@@ -12,6 +35,8 @@ const SignUpModal = (props: Props) => {
                     id="firstName"
                     type="text"
                     placeholder="First Name"
+                    value={signupState.firstName}
+                    onChange = {(e)=> setsignupState({...signupState, firstName: e.target.value})}
                 />
             </div>
             <div className="mb-4 text-left">
@@ -21,6 +46,8 @@ const SignUpModal = (props: Props) => {
                     id="lastName"
                     type="text"
                     placeholder="Last Name"
+                    value={signupState.lastName}
+                    onChange = {(e)=> setsignupState({...signupState, lastName: e.target.value})}
                 />
             </div>
             <div className="mb-4 text-left">
@@ -30,6 +57,8 @@ const SignUpModal = (props: Props) => {
                     id="email"
                     type="text"
                     placeholder="Email Address"
+                    value={signupState.email}
+                    onChange = {(e)=> setsignupState({...signupState, email: e.target.value})}
                 />
             </div>
             <div className="mb-4 text-left">
@@ -39,6 +68,8 @@ const SignUpModal = (props: Props) => {
                     id="password"
                     type="password"
                     placeholder="Password"
+                    value={signupState.password}
+                    onChange = {(e)=> setsignupState({...signupState, password: e.target.value})}
                 />
             </div>
             <div className="mb-6 text-left">
@@ -48,6 +79,8 @@ const SignUpModal = (props: Props) => {
                     id="password"
                     type="password"
                     placeholder="Password"
+                    value={signupState.confirmedPassword}
+                    onChange = {(e)=> setsignupState({...signupState, confirmedPassword: e.target.value})}
                 />
             </div>
             <div className="block md:flex items-center justify-between">

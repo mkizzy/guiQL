@@ -10,6 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@google-cloud/secret-manager": "^4.2.1",
     "@heroicons/react": "^2.0.14",
     "autoprefixer": "^10.4.13",
     "bcryptjs": "^2.4.3",
