@@ -37,7 +37,6 @@ const postRegister = async (req, res) => {
                 expiresIn:'24h'
             }
         )
-        
         //sending info to client upon successful request
         res.status(201).json({
             userDetails:{

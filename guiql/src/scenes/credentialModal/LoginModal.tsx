@@ -1,7 +1,23 @@
+import React, {useState} from "react";
 type Props = {
-
+   
+}
+interface LoginState{
+    email: string,
+    password: string
 }
 const LoginModal = (props: Props) => {
+    const onSubmit = (e:React.FormEvent<HTMLFormElement>) => {
+        console.log(e)
+    }
+    // create single object state for email and password
+    const [loginState, setLoginState] = useState<LoginState>({
+        email: '',
+        password: ''
+    })
+    // const [email, setEmail] = useState<string>('');
+    // const [password, setPassword] = useState<string>('');
+    console.log(loginState.email, loginState.password);
     return (
         <form className="pt-6 pb-2 my-2">
                 {/* Need states to track input values*/}
@@ -12,6 +28,8 @@ const LoginModal = (props: Props) => {
                         id="email"
                         type="text"
                         placeholder="Email Address"
+                        value={loginState.email}
+                        onChange = {(e)=> setLoginState({...loginState, email: e.target.value})}
                     />
                 </div>
                 <div className="mb-6 text-left">
@@ -21,6 +39,8 @@ const LoginModal = (props: Props) => {
                         id="password"
                         type="password"
                         placeholder="Password"
+                        value={loginState.password}
+                        onChange = {(e)=> setLoginState({...loginState, password: e.target.value})}
                     />
                 </div>
                 <div className="block md:flex items-center justify-between">
