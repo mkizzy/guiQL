@@ -23,7 +23,6 @@ const URI = process.env.MONGO_URI;
 const PORT = process.env.API_PORT || process.env.PORT;
 mongoose.set("strictQuery", false);
 
-
 //DBConnection
 mongoose
   .connect(URI, {
