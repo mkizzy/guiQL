@@ -40,6 +40,9 @@ async function connectToMongo() {
     dbName: 'guiQL',
   });
 }
+const URI = process.env.MONGO_URI;
+const PORT = process.env.API_PORT || 3000;
+
 // Connect to MongoDB and start the server
 connectToMongo()
   .then(() => {
@@ -51,8 +54,7 @@ connectToMongo()
     console.log('db connection failed. Server not start.');
     console.error(err);
   });
-const URI = process.env.MONGO_URI;
-const PORT = process.env.API_PORT || process.env.PORT;
+
 
 // Global error handler
 app.use((err, req, res, next) => {
