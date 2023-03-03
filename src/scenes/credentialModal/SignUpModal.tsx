@@ -1,33 +1,40 @@
-import React, {useState} from 'react'
+import {useState} from 'react'
 type Props = {
- 
+
 }
-interface SignupState{
+interface SignUpCredentials{
     firstName: string,
     lastName: string,
     email: string,
     password: string,
-    confirmedPassword: string
+    confirmPassword: string
 }
 
 const SignUpModal = (props: Props) => {
     //create states for firstname, lastname, email, password
     //create object state for signup modal
-    const [signupState, setsignupState] = useState<SignupState>({
+    const [signUpCredentials, setSignUpCredentials] = useState<SignUpCredentials>({
         firstName : '',
         lastName: '',
         email: '',
         password: '',
-        confirmedPassword: ''
+        confirmPassword: ''
     });
-    // const [firstName, setFirstName] = useState<string>('');
-    // const [lastName, setLastName] = useState<string>('');
-    // const [email, setEmail] = useState<string>('');
-    // const [password, setPassword] = useState<string>('');
-    // const [confirmedPassword, setConfirmedPassword] = useState<string>('');
-    console.log(signupState.firstName, signupState.lastName, signupState.email, signupState.password, signupState.confirmedPassword );
+
+    const handleSignUpFormSubmit = (e:React.FormEvent<HTMLFormElement>)=> {
+        e.preventDefault()
+        console.log("sign up btn pressed")
+    }
+    
+    const handleSignUpCredentials = (key: keyof SignUpCredentials, value: string)=>{
+        setSignUpCredentials({
+            ...signUpCredentials,
+            [key]:value
+        })
+    }
+    console.log(signUpCredentials)
     return (
-        <form className="pt-6 pb-2 my-2">
+        <form className="pt-6 pb-2 my-2" onSubmit={handleSignUpFormSubmit}>
             <div className="mb-4 text-left">
                 <label className="block text-sm font-bold mb-2">First Name</label>
                 <input
@@ -35,8 +42,8 @@ const SignUpModal = (props: Props) => {
                     id="firstName"
                     type="text"
                     placeholder="First Name"
-                    value={signupState.firstName}
-                    onChange = {(e)=> setsignupState({...signupState, firstName: e.target.value})}
+                    value={signUpCredentials.firstName}
+                    onChange = {(e)=>handleSignUpCredentials('firstName', e.target.value)}
                 />
             </div>
             <div className="mb-4 text-left">
@@ -46,8 +53,8 @@ const SignUpModal = (props: Props) => {
                     id="lastName"
                     type="text"
                     placeholder="Last Name"
-                    value={signupState.lastName}
-                    onChange = {(e)=> setsignupState({...signupState, lastName: e.target.value})}
+                    value={signUpCredentials.lastName}
+                    onChange = {(e)=>handleSignUpCredentials('lastName', e.target.value)}
                 />
             </div>
             <div className="mb-4 text-left">
@@ -57,8 +64,8 @@ const SignUpModal = (props: Props) => {
                     id="email"
                     type="text"
                     placeholder="Email Address"
-                    value={signupState.email}
-                    onChange = {(e)=> setsignupState({...signupState, email: e.target.value})}
+                    value={signUpCredentials.email}
+                    onChange = {(e)=>handleSignUpCredentials('email', e.target.value)}
                 />
             </div>
             <div className="mb-4 text-left">
@@ -68,25 +75,25 @@ const SignUpModal = (props: Props) => {
                     id="password"
                     type="password"
                     placeholder="Password"
-                    value={signupState.password}
-                    onChange = {(e)=> setsignupState({...signupState, password: e.target.value})}
+                    value={signUpCredentials.password}
+                    onChange = {(e)=>handleSignUpCredentials('password', e.target.value)}
                 />
             </div>
             <div className="mb-6 text-left">
                 <label className="block text-sm font-bold mb-2">Confirm Password</label>
                 <input
                     className="shadow appearance-none border rounded w-full py-2 px-3"
-                    id="password"
+                    id="confirmpassword"
                     type="password"
-                    placeholder="Password"
-                    value={signupState.confirmedPassword}
-                    onChange = {(e)=> setsignupState({...signupState, confirmedPassword: e.target.value})}
+                    placeholder="Confirm Password"
+                    value={signUpCredentials.confirmPassword}
+                    onChange = {(e)=>handleSignUpCredentials('confirmPassword', e.target.value)}
                 />
             </div>
             <div className="block md:flex items-center justify-between">
                 <div>
                     {/* Add functinoality here */}
-                    <button className="rounded-md hover:bg-secondary-500 px-10 py-2 bg-primary-500 text-white" type="button">
+                    <button className="rounded-md hover:bg-secondary-500 px-10 py-2 bg-primary-500 text-white" type="submit">
                         Create Account
                     </button>
                 </div>
