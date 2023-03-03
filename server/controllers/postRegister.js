@@ -47,7 +47,12 @@ const postRegister = async (req, res) => {
             },
         });
     } catch (err) {
-        return res.status(500).send('Error has occured. Please try again.');
+        return {
+            error: err,
+            status: 500,
+            message: 'Error has occurred. Please try again'
+        }
+        // return res.status(500).send('Error has occured. Please try again.');
     }
 }
 

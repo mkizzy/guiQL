@@ -7,8 +7,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "start": "nodemon server/server.js",
-    "test-mocha": "mocha",
-    "test-jest": "jest --verbose"
+    "test": "jest --verbose /__tests__/postRegisterTest.js"
   },
   "dependencies": {
     "@google-cloud/secret-manager": "^4.2.1",
@@ -17,6 +16,7 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "chai": "^4.3.7",
+    "chai-http": "^4.3.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
@@ -50,6 +50,7 @@
     "prettier": "^2.8.3",
     "prettier-plugin-tailwindcss": "^0.2.2",
     "react-test-renderer": "^18.2.0",
+    "supertest": "^6.3.3",
     "typescript": "^4.9.3",
     "vite": "^4.0.0"
   }
