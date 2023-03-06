@@ -1,4 +1,5 @@
 import {useState} from 'react'
+import axios from 'axios'
 type Props = {
 
 }
@@ -23,7 +24,29 @@ const SignUpModal = (props: Props) => {
 
     const handleSignUpFormSubmit = (e:React.FormEvent<HTMLFormElement>)=> {
         e.preventDefault()
-        console.log("sign up btn pressed")
+        
+        // fetch("http://localhost:5002/api/auth/register",{
+        //     method: "POST",
+        //     headers: {
+        //         "Content-type":"application/json"
+        //     },
+        //     body: JSON.stringify(signUpCredentials)
+        // }).then(r=>{
+        //     console.log(r)
+        //     //maybe login the user as soon as they signup?
+        // }).catch(err=>{
+        //     console.log(err)
+        // })
+
+        axios.post("http://localhost:5002/api/auth/register", signUpCredentials)
+            .then(response=>{
+                console.log(response.data)
+            })
+            .catch(error=>{
+                console.log(error.toJSON())
+                alert(error.toJSON())
+            })
+
     }
     
     const handleSignUpCredentials = (key: keyof SignUpCredentials, value: string)=>{
@@ -93,7 +116,7 @@ const SignUpModal = (props: Props) => {
             <div className="block md:flex items-center justify-between">
                 <div>
                     {/* Add functinoality here */}
-                    <button className="rounded-md hover:bg-secondary-500 px-10 py-2 bg-primary-500 text-white" type="submit">
+                    <button className="rounded-md hover:bg-secondary-500 px-10 py-2 bg-primary-500 text-white"  type="submit">
                         Create Account
                     </button>
                 </div>

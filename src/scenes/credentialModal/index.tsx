@@ -31,7 +31,7 @@ const CredentialModal = ({
                     animate={{ scale: 1 }}
                     exit={{ scale: 0.8 }}
                     transition={{ duration: 0.5 }}
-                    onClick={(event) => event.stopPropagation()}
+                    onClick={(event) => event.stopPropagation()} 
                 >
                     <motion.div className="fixed inset-0 flex items-center"
                         initial={{ opacity: 0 }}
