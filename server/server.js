@@ -24,37 +24,51 @@ app.use(express.urlencoded({ extended: true }));
 mongoose.set("strictQuery", false);
 
 // Retrieve the MongoDB URI from Google Secret Manager
-const getSecret = async (secretsName) => {
-  const name = `projects/441105779841/secrets/${secretsName}/versions/1`
-  const [version] = await secretClient.accessSecretVersion({ name })
-  const payload = version.payload.data.toString();
-  return payload;
-}
-// Connect to MongoDB using the retrieved URI
-async function connectToMongo() {
-  const secretsName = 'guiQLmongo';
-  const URI = await getSecret(secretsName);
-  return mongoose.connect(URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    dbName: 'guiQL',
-  });
-}
+// const getSecret = async (secretsName) => {
+//   const name = `projects/441105779841/secrets/${secretsName}/versions/1`
+//   const [version] = await secretClient.accessSecretVersion({ name })
+//   const payload = version.payload.data.toString();
+//   return payload;
+// }
+// // Connect to MongoDB using the retrieved URI
+// async function connectToMongo() {
+//   const secretsName = 'guiQLmongo';
+//   const URI = await getSecret(secretsName);
+//   return mongoose.connect(URI, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//     dbName: 'guiQL',
+//   });
+// }
 const URI = process.env.MONGO_URI;
 const PORT = process.env.API_PORT || 3000;
 
 // Connect to MongoDB and start the server
-connectToMongo()
-  .then(() => {
-    app.listen(PORT, () => {
-      console.log(`Server is on ${PORT}`);
+// connectToMongo()
+//   .then(() => {
+//     app.listen(PORT, () => {
+//       console.log(`Server is on ${PORT}`);
+//     });
+//   })
+//   .catch((err) => {
+//     console.log('db connection failed. Server not start.');
+//     console.error(err);
+//   });
+mongoose
+  .connect(URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    dbName: 'guiQL'
+  })
+  .then(()=>{
+    app.listen(PORT, ()=>{
+        console.log(`Server is on ${PORT}`)
     });
   })
-  .catch((err) => {
+  .catch(err=>{
     console.log('db connection failed. Server not start.');
     console.error(err);
-  });
-
+  })
 
 // Global error handler
 app.use((err, req, res, next) => {
