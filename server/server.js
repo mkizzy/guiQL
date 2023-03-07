@@ -66,8 +66,8 @@ mongoose
     });
   })
   .catch(err=>{
-    console.log('db connection failed. Server not start.');
-    console.error(err);
+    console.log('db connection failed. Server failed to start.');
+    console.log(err)
   })
 
 // Global error handler
