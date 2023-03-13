@@ -1,11 +1,14 @@
 import Navbar from "@/shared/navbar"
 import { useState, useEffect } from "react"
-import { SelectedPage } from "@/shared/types"
+import { SelectedPage } from "@/shared/util/types"
 import Home from "@/scenes/welcomePage/home"
 import Features from "@/scenes/welcomePage/features"
 import CredentialModal from "@/scenes/welcomePage/credentialModal"
+type Props ={
+    toggleAuthUser: ()=>void
+}
 
-function WelcomePage() {
+function WelcomePage({toggleAuthUser}:Props) {
 
     const [selectedPage, setSelectedPage] = useState<SelectedPage>(SelectedPage.Home)
     const [isTopOfPage, setIsTopOfPage] = useState<boolean>(true)
@@ -48,6 +51,7 @@ function WelcomePage() {
                 selectedPage = {selectedPage} setSelectedPage = {setSelectedPage}
                 onHandleToggleLoginModal = {handleToggleLoginModal}
                 onHandleToggleSignUpModal = {handleToggleSignUpModal}
+                
             />
             <Home 
                 setSelectedPage={setSelectedPage}
@@ -60,6 +64,7 @@ function WelcomePage() {
                 onHandleCloseModal = {handleCloseModal}
                 onHandleToggleLoginModal = {handleToggleLoginModal}
                 onHandleToggleSignUpModal = {handleToggleSignUpModal}
+                toggleAuthUser = {toggleAuthUser}
             /> : ""}
             <Features 
                 setSelectedPage = {setSelectedPage}

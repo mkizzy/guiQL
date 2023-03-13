@@ -1,14 +1,16 @@
 import axios from "axios";
 import {useState} from "react";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
-
+    toggleAuthUser : ()=>void
 }
 interface LoginCredentials{
     email: string,
     password: string
 }
-const LoginModal = (props: Props) => {
+const LoginModal = ({toggleAuthUser}: Props) => {
+    const navigate = useNavigate()
     const handleLoginSubmit = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         
@@ -29,6 +31,8 @@ const LoginModal = (props: Props) => {
             .then(response=>{
                 console.log(response.data)
             })
+            .then(()=>toggleAuthUser())
+            .then(()=>navigate("/landing"))
             .catch(error=>{
                 console.log(error?.response?.data)
             })

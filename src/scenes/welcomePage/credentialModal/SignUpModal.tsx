@@ -43,8 +43,8 @@ const SignUpModal = (props: Props) => {
                 console.log(response.data)
             })
             .catch(error=>{
-                console.log(error.toJSON())
-                alert(error.toJSON())
+                console.log(error?.response?.data)
+                alert(error?.response?.data)
             })
 
     }
@@ -97,7 +97,7 @@ const SignUpModal = (props: Props) => {
                     className="shadow appearance-none border rounded w-full py-2 px-3"
                     id="password"
                     type="password"
-                    placeholder="Password"
+                    placeholder="min 8 length, 1 cap, 1 numeric, 1 non-alphanumeric"
                     value={signUpCredentials.password}
                     onChange = {(e)=>handleSignUpCredentials('password', e.target.value)}
                 />

@@ -9,6 +9,7 @@ type Props = {
     onHandleCloseModal: ()=>void;
     onHandleToggleSignUpModal: ()=>void;
     onHandleToggleLoginModal: ()=>void;
+    toggleAuthUser :()=>void
 }
 
 const CredentialModal = ({
@@ -16,7 +17,8 @@ const CredentialModal = ({
     toggleLogInModal,
     onHandleCloseModal,
     onHandleToggleLoginModal,
-    onHandleToggleSignUpModal
+    onHandleToggleSignUpModal,
+    toggleAuthUser 
 }: Props) => {
     return (
         <AnimatePresence>
@@ -71,7 +73,7 @@ const CredentialModal = ({
                                     transition={{ duration: 0.3 }}
                                 >
                                     {toggleLogInModal ? 
-                                        <LoginModal /> : 
+                                        <LoginModal toggleAuthUser = {toggleAuthUser} /> : 
                                         <SignUpModal/>
                                     }
                                 </motion.div>

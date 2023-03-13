@@ -1,4 +1,4 @@
-import { SelectedPage } from '@/shared/types'
+import { SelectedPage } from '@/shared/util/types'
 import useMediaQuery from '@/hooks/useMediaQuery'
 import HomePageText from '@/assets/HomePageText.png'
 import graphql from '@/assets/graphql.png'
