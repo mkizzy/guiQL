@@ -1,4 +1,4 @@
-import { SelectedPage, FeatureType } from '@/shared/types'
+import { SelectedPage, FeatureType } from '@/shared/util/types'
 import ERD from '@/assets/ERD.png'
 import query from '@/assets/query.png'
 import {DocumentDuplicateIcon} from "@heroicons/react/24/solid"

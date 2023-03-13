@@ -1,8 +1,11 @@
+import { UserDetails } from '@/shared/util/types'
 import React from 'react'
 
-type Props = {}
+type Props = {
+    userDetails: UserDetails
+}
 
-const LandingPage = (props: Props) => {
+const LandingPage = ({userDetails}: Props) => {
     return (
         <div>
             index
