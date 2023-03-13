@@ -30,8 +30,7 @@ const LoginModal = (props: Props) => {
                 console.log(response.data)
             })
             .catch(error=>{
-                console.log(error.toJSON())
-                alert(error.toJSON())
+                console.log(error?.response?.data)
             })
 
     }
