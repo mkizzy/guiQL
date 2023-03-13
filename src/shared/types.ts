@@ -11,3 +11,10 @@ export interface FeatureType{
     title: string,
     description: string
 }
+
+export interface UserDetails {
+    email: string,
+    firstName: string,
+    lastName: string,
+    token: string,
+}
