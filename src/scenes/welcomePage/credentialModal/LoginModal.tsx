@@ -1,23 +1,26 @@
 import axios from "axios";
 import {useState} from "react";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
-
+    toggleAuthUser : ()=>void
 }
 interface LoginCredentials{
     email: string,
     password: string
 }
-const LoginModal = (props: Props) => {
+const LoginModal = ({toggleAuthUser}: Props) => {
+    const navigate = useNavigate()
     const handleLoginSubmit = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         axios.post("http://localhost:5002/api/auth/login", loginCredentials)
             .then(response=>{
                 console.log(response.data)
             })
+            .then(()=>toggleAuthUser())
+            .then(()=>navigate("/landing"))
             .catch(error=>{
-                console.log(error.toJSON())
-                alert(error.toJSON())
+                console.log(error?.response?.data)
             })
     }
 

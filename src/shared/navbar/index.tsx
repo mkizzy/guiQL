@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import Link from "./Link"
-import { SelectedPage } from "@/shared/types";
+import { SelectedPage } from "@/shared/util/types";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import SignUpButton from "@/shared/SignUpButton";
 import { motion, AnimatePresence } from "framer-motion";

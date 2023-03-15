@@ -1,71 +1,51 @@
-import Navbar from "@/scenes/navbar"
-import { useState, useEffect } from "react"
-import { SelectedPage } from "@/shared/types"
-import Home from "@/scenes/home"
-import Features from "@/scenes/features"
-import CredentialModal from "@/scenes/credentialModal"
+import { Route, Routes, useNavigate, useLocation, Navigate, Outlet } from "react-router-dom"
+import WelcomePage from "@/scenes/welcomePage"
+import LandingPage from "./scenes/landingPage"
+import { UserDetails } from "./shared/util/types"
+import { useState , useEffect} from "react"
+import { useIsAuthenticated } from "./hooks/useIsAuthenticated"
+import axios from "axios"
 
 function App() {
-
-  const [selectedPage, setSelectedPage] = useState<SelectedPage>(SelectedPage.Home)
-  const [isTopOfPage, setIsTopOfPage] = useState<boolean>(true)
-  const [toggleLogInModal, setToggleLoginModal] = useState<boolean>(false)
-  const [toggleSignUpModal, setToggleSignUpModal] = useState<boolean>(false)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY === 0) {
-        setIsTopOfPage(true);
-        setSelectedPage(SelectedPage.Home);
-      }
-      if (window.scrollY !== 0) setIsTopOfPage(false);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const handleToggleLoginModal = () => {
-    setToggleLoginModal(toggleLogInModal=> !toggleLogInModal)
-    setToggleSignUpModal(toggleSignUpModal=>toggleSignUpModal=false)
-    console.log("login has been toggeled")
+  const [userDetails, setUserDetails] = useState<UserDetails>({
+    email: "",
+    firstName: "",
+    lastName: ""
+  })
+  
+  const [loggedIn, setLoggedIn] = useState<boolean>(false)
+  
+  const toggleAuthUser = ()=>{
+    setLoggedIn(!loggedIn)
   }
 
-  const handleToggleSignUpModal = () => {
-    setToggleSignUpModal(toggleSignUpModal=>!toggleSignUpModal)
-    setToggleLoginModal(toggleLogInModal=>toggleLogInModal=false)
-    console.log("sign up form has been clicked")
-  }
 
-  const handleCloseModal = () => {
-    setToggleLoginModal(toggleLogInModal=>toggleLogInModal=false)
-    setToggleSignUpModal(toggleSignUpModal=>toggleSignUpModal=false)
+  function RequireAuth({ children }: { children: JSX.Element }){
+    // let location = useLocation();
+    // const isAuthenthicated = useIsAuthenticated()
+    if(loggedIn){
+      return children
+    }
+    return (<div>Login please</div>)
+
+    
   }
 
   return (
-    <div className="app bg-gray-20">
-      <Navbar 
-        isTopOfPage = {isTopOfPage}
-        selectedPage = {selectedPage} setSelectedPage = {setSelectedPage}
-        onHandleToggleLoginModal = {handleToggleLoginModal}
-        onHandleToggleSignUpModal = {handleToggleSignUpModal}
+    <Routes>
+      <Route 
+        path = "/" 
+        element = {<WelcomePage toggleAuthUser={toggleAuthUser}/>}
       />
-      <Home 
-        setSelectedPage={setSelectedPage}
-        onHandleToggleLoginModal = {handleToggleLoginModal}
-        onHandleToggleSignUpModal = {handleToggleSignUpModal}
-      />
-      {toggleLogInModal || toggleSignUpModal ? <CredentialModal 
-        toggleLogInModal = {toggleLogInModal}
-        toggleSignUpModal ={toggleSignUpModal}
-        onHandleCloseModal = {handleCloseModal}
-        onHandleToggleLoginModal = {handleToggleLoginModal}
-        onHandleToggleSignUpModal = {handleToggleSignUpModal}
-      /> : ""}
-      <Features 
-        setSelectedPage = {setSelectedPage}
-      />
-    </div>
+      <Route path="/landing" element = {
+        <RequireAuth>
+          <LandingPage userDetails={userDetails}/>
+        </RequireAuth>
+      }/>
+    </Routes>
   )
 }
+
+
 
 export default App
