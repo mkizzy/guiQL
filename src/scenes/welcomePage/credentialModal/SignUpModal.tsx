@@ -1,42 +1,48 @@
-import {useState} from 'react'
-import axios from 'axios'
-type Props = {
-
+import { useState, useEffect } from "react";
+import axios from "axios";
+type Props = {};
+interface SignUpCredentials {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
 }
-interface SignUpCredentials{
-    firstName: string,
-    lastName: string,
-    email: string,
-    password: string,
-    confirmPassword: string
+
+interface PasswordRequirements {
+  length: boolean;
+  uppercase: boolean;
+  lowercase: boolean;
+  number: boolean;
+  special: boolean;
+  confirm: boolean;
 }
 
 const SignUpModal = (props: Props) => {
-    //create states for firstname, lastname, email, password
-    //create object state for signup modal
-    const [signUpCredentials, setSignUpCredentials] = useState<SignUpCredentials>({
-        firstName : '',
-        lastName: '',
-        email: '',
-        password: '',
-        confirmPassword: ''
+  //create states for firstname, lastname, email, password
+  //create object state for signup modal
+  const [signUpCredentials, setSignUpCredentials] = useState<SignUpCredentials>(
+    {
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    }
+  );
+  //set a state for passwordRequirements to confirm pw modal works
+  const [passwordRequirements, setPasswordRequirements] =
+    useState<PasswordRequirements>({
+      length: false,
+      uppercase: false,
+      lowercase: false,
+      number: false,
+      special: false,
+      confirm: false,
     });
 
-    const handleSignUpFormSubmit = (e:React.FormEvent<HTMLFormElement>)=> {
-        e.preventDefault()
-        
-        // fetch("http://localhost:5002/api/auth/register",{
-        //     method: "POST",
-        //     headers: {
-        //         "Content-type":"application/json"
-        //     },
-        //     body: JSON.stringify(signUpCredentials)
-        // }).then(r=>{
-        //     console.log(r)
-        //     //maybe login the user as soon as they signup?
-        // }).catch(err=>{
-        //     console.log(err)
-        // })
+  const handleSignUpFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
         axios.post("http://localhost:5002/api/auth/register", signUpCredentials)
             .then(response=>{
@@ -129,4 +135,178 @@ const SignUpModal = (props: Props) => {
     )
 }
 
-export default SignUpModal
+  return (
+    <form className="my-2 pt-6 pb-2" onSubmit={handleSignUpFormSubmit}>
+      <div className="mb-4 text-left">
+        <label className="mb-2 block text-sm font-bold">First Name</label>
+        <input
+          className="w-full appearance-none rounded border py-2 px-3 shadow"
+          id="firstName"
+          type="text"
+          placeholder="First Name"
+          value={signUpCredentials.firstName}
+          onChange={(e) => handleSignUpCredentials("firstName", e.target.value)}
+          required
+          minLength={1}
+        />
+      </div>
+      <div className="mb-4 text-left">
+        <label className="mb-2 block text-sm font-bold">Last Name</label>
+        <input
+          className="w-full appearance-none rounded border py-2 px-3 shadow"
+          id="lastName"
+          type="text"
+          placeholder="Last Name"
+          value={signUpCredentials.lastName}
+          onChange={(e) => handleSignUpCredentials("lastName", e.target.value)}
+          required
+          minLength={1}
+        />
+      </div>
+      <div className="mb-4 text-left">
+        <label className="mb-2 block text-sm font-bold">Email Address</label>
+        <input
+          className="w-full appearance-none rounded border py-2 px-3 shadow"
+          id="email"
+          type="text"
+          placeholder="Email Address"
+          value={signUpCredentials.email}
+          onChange={(e) => handleSignUpCredentials("email", e.target.value)}
+          required
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+        />
+      </div>
+      <div className="mb-4 text-left">
+        <label className="mb-2 block text-sm font-bold">Password</label>
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          className="w-full appearance-none rounded border py-2 px-3 shadow"
+          required
+          minLength={8}
+          onChange={(e) => handleSignUpCredentials("password", e.target.value)}
+          onFocus={() => {
+            document.getElementById("passwordRequirements").classList.remove("hidden");
+          }}
+          onBlur={() => {
+            document.getElementById("passwordRequirements").classList.add("hidden");
+          }}
+        />
+        <div id="passwordRequirements" className="absolute z-10 mt-2 hidden w-72 rounded-md bg-white px-4 py-2 shadow-lg">
+          <p className="mb-2 font-semibold text-gray-700">
+            Password requirements:
+          </p>
+          <ul className="list-inside list-disc text-sm text-gray-600">
+            <li
+              style={{
+                textDecoration: passwordRequirements.length
+                  ? "line-through"
+                  : "none",
+              }}
+            >
+              Must be at least 8 characters long.
+            </li>
+            <li
+              style={{
+                textDecoration: passwordRequirements.uppercase
+                  ? "line-through"
+                  : "none",
+              }}
+            >
+              Must contain at least one uppercase letter.
+            </li>
+            <li
+              style={{
+                textDecoration: passwordRequirements.lowercase
+                  ? "line-through"
+                  : "none",
+              }}
+            >
+              Must contain at least one lowercase letter.
+            </li>
+            <li
+              style={{
+                textDecoration: passwordRequirements.number
+                  ? "line-through"
+                  : "none",
+              }}
+            >
+              Must contain at least one number.
+            </li>
+            <li
+              style={{
+                textDecoration: passwordRequirements.special
+                  ? "line-through"
+                  : "none",
+              }}
+            >
+              Must contain at least one special character.
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div className="mb-6 text-left">
+        <label className="mb-2 block text-sm font-bold">Confirm Password</label>
+        <input
+          className="w-full appearance-none rounded border py-2 px-3 shadow"
+          id="confirmpassword"
+          type="password"
+          placeholder="Confirm Password"
+          value={signUpCredentials.confirmPassword}
+          onChange={(e) =>
+            handleSignUpCredentials("confirmPassword", e.target.value)
+          }
+          onFocus={() => {
+            document
+              .getElementById("confirmPasswordRequirements")
+              .classList.remove("hidden");
+          }}
+          onBlur={() => {
+            document
+              .getElementById("confirmPasswordRequirements")
+              .classList.add("hidden");
+          }}
+        />
+        <div
+          id="confirmPasswordRequirements"
+          className="absolute z-10 mt-2 hidden w-72 rounded-md bg-white px-4 py-2 shadow-lg"
+        >
+          <p className="mb-2 font-semibold text-gray-700">
+            Confirm Password Requirements
+          </p>
+          <ul className="list-inside list-disc text-sm text-gray-600">
+            <li
+              style={{
+                textDecoration: passwordRequirements.confirm
+                  ? "line-through"
+                  : "none",
+              }}
+            >
+              Must match password.
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div className="block items-center justify-between md:flex">
+        <div>
+          {/* Add functinoality here */}
+          <button
+            className="rounded-md bg-primary-500 px-10 py-2 text-white hover:bg-secondary-500"
+            type="submit"
+          >
+            Create Account
+          </button>
+        </div>
+        <div className="mt-4 md:mt-0">
+          {/* Add functinoality here */}
+          <a href="#" className="no-underline">
+            Proceed to login.
+          </a>
+        </div>
+      </div>
+    </form>
+  );
+};
+
+export default SignUpModal;

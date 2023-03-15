@@ -39,4 +39,9 @@ router.post(
     authController.postLogin
 )
 
+router.delete(
+    "/deleteUser",
+    authController.deleteUser
+)
+
 module.exports = router
