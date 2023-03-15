@@ -11,20 +11,6 @@ interface LoginCredentials{
 const LoginModal = (props: Props) => {
     const handleLoginSubmit = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        
-        // fetch("http://localhost:5002/api/auth/register",{
-        //     method: "POST",
-        //     headers: {
-        //         "Content-type":"application/json"
-        //     },
-        //     body: JSON.stringify(signUpCredentials)
-        // }).then(r=>{
-        //     console.log(r)
-        //     //maybe login the user as soon as they signup?
-        // }).catch(err=>{
-        //     console.log(err)
-        // })
-
         axios.post("http://localhost:5002/api/auth/login", loginCredentials)
             .then(response=>{
                 console.log(response.data)
@@ -33,9 +19,8 @@ const LoginModal = (props: Props) => {
                 console.log(error.toJSON())
                 alert(error.toJSON())
             })
-
     }
-    // create single object state for email and password
+
     const [loginCredentials, setLoginCredentials] = useState<LoginCredentials>({
         email: '',
         password: ''
