@@ -7,7 +7,8 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "start": "nodemon server/server.js",
-    "test": "jest --verbose /__tests__/postRegisterTest.js"
+    "test": "mocha test/postRegisterTest.js",
+    "sample-test": "mocha test/sample.js"
   },
   "dependencies": {
     "@google-cloud/secret-manager": "^4.2.1",
@@ -37,8 +38,8 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.9.0",
     "reactflow": "^11.5.5",
-    "tailwindcss": "^3.2.4",
-    "uuid": "^9.0.0"
+    "sinon": "^15.0.1",
+    "tailwindcss": "^3.2.4"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.20.2",
@@ -55,6 +56,7 @@
     "prettier": "^2.8.3",
     "prettier-plugin-tailwindcss": "^0.2.2",
     "react-test-renderer": "^18.2.0",
+    "sinon-chai": "^3.7.0",
     "supertest": "^6.3.3",
     "typescript": "^4.9.3",
     "vite": "^4.0.0"
