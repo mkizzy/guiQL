@@ -3,7 +3,6 @@ import WelcomePage from "@/scenes/welcomePage"
 import LandingPage from "./scenes/landingPage"
 import { UserDetails } from "./shared/util/types"
 import { useState , useEffect} from "react"
-import { useIsAuthenticated } from "./hooks/useIsAuthenticated"
 import axios from "axios"
 
 function App() {

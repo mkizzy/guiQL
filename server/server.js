@@ -1,4 +1,4 @@
-const  express =require( 'express');
+const  express = require( 'express');
 const  bodyParser =require( 'body-parser');
 const  mongoose =require( 'mongoose');
 const  cors = require( 'cors');
@@ -8,6 +8,8 @@ const  morgan =require( 'morgan');
 const authRoutes = require('./routes/authRoutes')
 const uriRoutes = require('./routes/uriRoutes')
 const { SecretManagerServiceClient } = require('@google-cloud/secret-manager');
+const verfiyJWT = require('./middleware/verifyJWT')
+const cookieParser = require('cookie-parser')
 
 //CONFIGURATIONS & MIDDLEWARES
 dotenv.config();
@@ -19,10 +21,8 @@ app.use(helmet.crossOriginResourcePolicy({policy: "cross-origin"}));
 app.use(morgan("common"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : false}));
-app.use(cors({
-  origin: "http://localhost:5173/",
-  credentials: true
-}));
+app.use(cors());
+app.use(cookieParser())
 app.use(express.urlencoded({ extended: true }));
 mongoose.set("strictQuery", false);
 
@@ -83,10 +83,13 @@ app.use((err, req, res, next) => {
   const errorObj = Object.assign({}, defaultErr, err);
   return res.status(errorObj.status).json(errorObj.message);
 });
-app.get("/getCookie", (req,res)=>{
-  res.status(202).cookie
-})
 
+//unprotected routes
 app.use("/api/auth", authRoutes)
+app.use("/refresh", require("./routes/refreshRoute"))
+
+//protected routes
+app.use(verfiyJWT)
+app.use('/uri', uriRoutes)
 
 // module.exports = app.listen(PORT)
