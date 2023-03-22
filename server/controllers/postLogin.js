@@ -32,6 +32,11 @@ const postLogin = async (req, res) => {
                     expiresIn: "24h"
                 }
             );
+            
+            res.cookie('token', token, {
+                httpOnly: true,
+                
+            })
 
             return res.status(200).json({
                 userDetails :{
