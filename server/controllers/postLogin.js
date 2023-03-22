@@ -34,7 +34,7 @@ const postLogin = async (req, res) => {
                     return
                 }
             })
-            res.cookie('jwt', refreshToken, {httpOnly: true, maxAge: 24 * 60 * 60 * 1000})
+            res.cookie('jwt', refreshToken, {httpOnly: true, maxAge: 24 * 60 * 60 * 1000, secure: true})
             res.json({accessToken, 'success': `Welcome back ${user.firstName}!`})
         } else {
             return res.status(401)

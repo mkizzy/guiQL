@@ -10,6 +10,7 @@ const uriRoutes = require('./routes/uriRoutes')
 const { SecretManagerServiceClient } = require('@google-cloud/secret-manager');
 const verfiyJWT = require('./middleware/verifyJWT')
 const cookieParser = require('cookie-parser')
+const verifyRefreshToken = require('./middleware/verifyRefresh')
 
 //CONFIGURATIONS & MIDDLEWARES
 dotenv.config();
@@ -87,6 +88,10 @@ app.use((err, req, res, next) => {
 //unprotected routes
 app.use("/api/auth", authRoutes)
 app.use("/refresh", require("./routes/refreshRoute"))
+app.use("/logout", require('./routes/logoutRoute') )
+app.get("/checkExistingUser", verifyRefreshToken, (req,res)=>{
+  res.json("user is valid and logged in")
+})
 
 //protected routes
 app.use(verfiyJWT)

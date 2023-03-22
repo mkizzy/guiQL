@@ -4,13 +4,13 @@ require('dotenv').config()
 
 
 //ASSIGNING NEW ACCESS TOKEN UPON EXPIRATION
-const handleRefreshToken = (req,res) => {
+const handleRefreshToken = async (req,res) => {
     const cookies = req.cookies
     if(!cookies?.jwt) return res.sendStatus(401);
 
     const refreshToken = cookies.jwt
     // console.log({refreshToken})
-    const user = User.findOne({refreshToken: refreshToken})
+    const user =  await User.findOne({refreshToken: refreshToken})
     // console.log({user})
     if(!user) return res.sendStatus(403)
 
@@ -19,7 +19,7 @@ const handleRefreshToken = (req,res) => {
         process.env.REFRESH_TOKEN_KEY,
         (err, decoded) => {
             if(err || user.id !== decoded.userID){
-                return res.sendStatus(505)
+                return res.sendStatus(403)
             } 
             const accessToken = jwt.sign(
                 {

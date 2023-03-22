@@ -1,10 +1,12 @@
 import { Route, Routes, useNavigate, useLocation, Navigate, Outlet } from "react-router-dom"
 import WelcomePage from "@/scenes/welcomePage"
-import LandingPage from "./scenes/landingPage"
-import { UserDetails } from "./shared/util/types"
+import LandingPage from "@/scenes/landingPage"
+import { UserDetails } from "@/shared/util/types"
 import { useState , useEffect} from "react"
+import ProtectedRoute from "@/shared/util/PrivateRoute"
 import axios from "axios"
 
+axios.defaults.withCredentials = true
 function App() {
   const [userDetails, setUserDetails] = useState<UserDetails>({
     email: "",
@@ -26,8 +28,6 @@ function App() {
       return children
     }
     return (<div>Login please</div>)
-
-    
   }
 
   return (
@@ -36,11 +36,7 @@ function App() {
         path = "/" 
         element = {<WelcomePage toggleAuthUser={toggleAuthUser}/>}
       />
-      <Route path="/landing" element = {
-        <RequireAuth>
-          <LandingPage userDetails={userDetails}/>
-        </RequireAuth>
-      }/>
+      //work on protected route for landingpage
     </Routes>
   )
 }

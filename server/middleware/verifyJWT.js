@@ -12,7 +12,7 @@ const verfiyJWT = (req,res,next)=> {
         process.env.ACCESS_TOKEN_KEY,
         (err,decoded)=>{
             if (err) return res.sendStatus(403) // invalid token
-            req.user = decoded.userId;
+            req.user = decoded.userID;
             next()
         }
     )
