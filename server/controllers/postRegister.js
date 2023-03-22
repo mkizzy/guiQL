@@ -26,26 +26,6 @@ const postRegister = async (req, res) => {
             password: encryptedPassword
         })
 
-        //creating a token
-        const token = jwt.sign(
-            {
-                userId: user._id,
-                email
-            },
-            process.env.TOKEN_KEY,
-            {
-                expiresIn:'24h'
-            }
-        )
-        //sending info to client upon successful request
-        res.status(201).json({
-            userDetails:{
-                email: user.email,
-                token: token,
-                firstName: user.firstName,
-                lastName: user.lastName
-            },
-        });
     } catch (err) {
         return {
             error: err,

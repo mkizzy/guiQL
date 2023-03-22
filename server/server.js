@@ -1,4 +1,4 @@
-const  express =require( 'express');
+const  express = require( 'express');
 const  bodyParser =require( 'body-parser');
 const  mongoose =require( 'mongoose');
 const  cors = require( 'cors');
@@ -8,6 +8,9 @@ const  morgan =require( 'morgan');
 const authRoutes = require('./routes/authRoutes')
 const uriRoutes = require('./routes/uriRoutes')
 const { SecretManagerServiceClient } = require('@google-cloud/secret-manager');
+const verfiyJWT = require('./middleware/verifyJWT')
+const cookieParser = require('cookie-parser')
+const verifyRefreshToken = require('./middleware/verifyRefresh')
 
 //CONFIGURATIONS & MIDDLEWARES
 dotenv.config();
@@ -20,6 +23,7 @@ app.use(morgan("common"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : false}));
 app.use(cors());
+app.use(cookieParser())
 app.use(express.urlencoded({ extended: true }));
 mongoose.set("strictQuery", false);
 
@@ -81,6 +85,16 @@ app.use((err, req, res, next) => {
   return res.status(errorObj.status).json(errorObj.message);
 });
 
+//unprotected routes
 app.use("/api/auth", authRoutes)
+app.use("/refresh", require("./routes/refreshRoute"))
+app.use("/logout", require('./routes/logoutRoute') )
+app.get("/checkExistingUser", verifyRefreshToken, (req,res)=>{
+  res.json("user is valid and logged in")
+})
+
+//protected routes
+app.use(verfiyJWT)
+app.use('/uri', uriRoutes)
 
 // module.exports = app.listen(PORT)
